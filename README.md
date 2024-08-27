@@ -17,3 +17,6 @@ kafka-console-producer.sh --topic topicName --bootstrap-server localhost:9092
 
 # To create consumer topic ==============
 kafka-console-consumer.sh --topic topicName --from-beginning --bootstrap-server localhost:9092
+
+
+![Screenshot 2024-08-27 014040](https://github.com/user-attachments/assets/3534b74c-529b-4a69-910c-3f4bb6233b57)
