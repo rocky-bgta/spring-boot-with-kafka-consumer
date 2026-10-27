@@ -18,43 +18,22 @@ public class PaytmConsumerApplication {
     @Autowired
     Environment env;
 
-    //@Value("${paytm.consumer.topic.name}")
-    //private final String topicName;
-
     public static void main(String[] args) {
         SpringApplication.run(PaytmConsumerApplication.class, args);
     }
 
-    @KafkaListener(topics = "payment-topic", groupId = "Payment_consumer_group")
+    @KafkaListener(topics = "${paytm.consumer.topic.name}", groupId = "${spring.kafka.consumer.group-id}")
     public void paymentConsumer1(PaymentRequest paymentRequest) throws JsonProcessingException {
         //business logic
-        log.info(String.format("it is running on %s", env.getProperty("local.server.port")));
+        log.info("Consumer listening on port {}", env.getProperty("server.port", "9000"));
         log.info("paymentConsumer1 consumed message {} ", new ObjectMapper().writeValueAsString(paymentRequest));
     }
 
-    @KafkaListener(topics = "payment-topic", groupId = "Payment_consumer_group")
+    @KafkaListener(topics = "${paytm.consumer.topic.name}", groupId = "${spring.kafka.consumer.group-id}")
     public void paymentConsumer2(PaymentRequest paymentRequest) throws JsonProcessingException {
         //business logic
-        log.info(String.format("it is running on %s", env.getProperty("local.server.port")));
+        log.info("Consumer listening on port {}", env.getProperty("server.port", "9000"));
         log.info("paymentConsumer2 consumed message {} ", new ObjectMapper().writeValueAsString(paymentRequest));
     }
 
-  /*  @KafkaListener(topics = "payment-topic", groupId = "Payment_consumer_group")
-    public void paymentConsumer3(PaymentRequest paymentRequest) throws JsonProcessingException {
-        //business logic
-        log.info("paymentConsumer3 consumed message {} ", new ObjectMapper().writeValueAsString(paymentRequest));
-    }
-
-    @KafkaListener(topics = "payment-topic", groupId = "Payment_consumer_group")
-    public void paymentConsumer4(PaymentRequest paymentRequest) throws JsonProcessingException {
-        //business logic
-        log.info("paymentConsumer4 consumed message {} ", new ObjectMapper().writeValueAsString(paymentRequest));
-    }*/
-
-//3
-//  3 c i
-// 4
-
-    // p-> 1 partitions
-    //consumer instance ?
 }
